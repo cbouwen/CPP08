@@ -48,7 +48,7 @@ int     Span::shortestSpan()
     std::vector<int>    sortedVector(_numbers);
     std::sort(sortedVector.begin(), sortedVector.end());
     int shortest = sortedVector[1] - sortedVector[0];
-    for (int i = 1; i < sortedVector.size() - 1; ++i)
+    for (unsigned long i = 1; i < sortedVector.size() - 1; ++i)
     {
         int span = sortedVector[i + 1] - sortedVector[i];
         if (span < shortest)
@@ -65,4 +65,14 @@ int     Span::longestSpan()
     int min = *std::min_element(_numbers.begin(), _numbers.end());
 
     return (max - min);
+}
+
+const char* Span::LimitReachedException::what() const throw()
+{
+    return "Vector has reached the limit";
+}
+
+const char* Span::NoSpanPossibleException::what() const throw()
+{
+    return "No span possible";
 }
